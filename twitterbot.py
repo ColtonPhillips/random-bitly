@@ -17,12 +17,17 @@ def main():
     url = random_bitly()
     response = urlopen(url).read()
     soup = BeautifulSoup(response)
-    title = soup.title.getText()[:100]
+    while True:
+        try:
+            title = soup.title.getText()[:100]
+            break
+        except NoneType:
+            title = 'Whoops'
 
     if randrange(1,3) == 1:
         bot.update_status('{title} - {url}'.format(title=title, url=url))
     else:
-        bot.update_status("{title} - You'll never know".format(title=title))
+        bot.update_status("{title} - You'll never know!".format(title=title))
 
 if __name__=='__main__':
     main()
