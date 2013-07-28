@@ -1,9 +1,9 @@
-from random import randrange
-
-# Twitter Bitly Bot
-import tweepy
-
+#Twitter Bitly Bot
 from short import random_bitly
+import tweepy
+from urllib import urlopen
+from BeautifulSoup import BeautifulSoup
+from random import randrange
 
 consumer_key=''
 consumer_secret=''
@@ -19,10 +19,10 @@ def main():
     soup = BeautifulSoup(response)
     title = soup.title.getText()[:100]
 
-    if randrang(1,6) == 1:
-        bot.update_status(random_url('{title} - {url}'.format(title=title, url=url)))
+    if randrange(1,3) == 1:
+        bot.update_status('{title} - {url}'.format(title=title, url=url))
     else:
-        bot.update_status(random_url("{title} - You'll never know".format(title=title)))
+        bot.update_status("{title} - You'll never know".format(title=title))
 
 if __name__=='__main__':
     main()
